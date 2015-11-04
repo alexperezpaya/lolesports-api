@@ -1,5 +1,5 @@
 class VideoMetadata
-  attr_accessor :video
+  attr_accessor :video, :download_urls
 
   def initialize(video_id)
     self.video = Yt::Video.new id: video_id
