@@ -5,7 +5,7 @@ describe LeaguesResource do
   end
 
   it "can fetch leagues" do
-    p @leagues_resource.all
+    @leagues_resource.all.class.must_equal Array
   end
 
 end

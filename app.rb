@@ -1,9 +1,12 @@
 require 'bundler'
-require 'require_all'
 require 'sinatra'
+require 'require_all'
 
-require 'thin'
-require 'rest-client'
+Bundler.require
+
+require 'uri'
+require 'CGI'
+require 'time'
 
 if development?
   require 'sinatra/reloader'

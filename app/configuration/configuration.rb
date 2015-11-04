@@ -1,0 +1,1 @@
+Yt.configuration.api_key = Vault::YOUTUBE

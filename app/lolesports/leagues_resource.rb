@@ -19,15 +19,16 @@ class LeaguesResource < Resource
 
   def league_by_slug(slug=nil)
     response = RestClient.get url, params: {slug: slug}
-    if json_body = JSON.parse(response.body)
+    begin
+      json_body = JSON.parse(response.body)
       league_hash = {}
       league_hash[:league] = json_body["leagues"].first
       league_hash[:tournaments] = json_body["highlanderTournaments"]
       league_hash[:match_results] = json_body["highlanderRecords"]
       league_hash[:teams] = json_body["teams"]
       league_hash
-    else
-      'HEY'
+    rescue
+      raise 404, 'No league found for this slug'
     end
   end
 
