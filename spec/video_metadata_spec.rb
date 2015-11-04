@@ -21,4 +21,16 @@ describe VideoMetadata do
     @video_metadata.plays.must_be :>, 10000
   end
 
+  it "has a description" do
+    @video_metadata.description.class.must_equal String
+  end
+
+  it "has a thumbnail" do
+    @video_metadata.thumbnail.class.must_equal String
+  end
+
+  it "has a duration" do
+    @video_metadata.duration.must_be :>, 0
+  end
+
 end
