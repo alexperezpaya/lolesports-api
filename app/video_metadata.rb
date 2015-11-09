@@ -1,8 +1,12 @@
 class VideoMetadata
-  attr_accessor :video, :download_urls
+  attr_accessor :video, :metadata
 
   def initialize(video_id)
     self.video = Yt::Video.new id: video_id
+  end
+
+  def video_url
+    "http://www.youtube.com/watch?v=#{video.video_id}"
   end
 
   def author
@@ -31,6 +35,22 @@ class VideoMetadata
 
   def thumbnail
     video.thumbnail_url
+  end
+
+  def video_id
+    video.video_id
+  end
+
+  def as_json
+    {
+      author: author,
+      title: title,
+      description: description,
+      plays: plays,
+      thumbnail: thumbnail,
+      duration: duration,
+      video_id: video_id
+    }
   end
 
 end
