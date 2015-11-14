@@ -5,7 +5,11 @@ class VideosResource < Resource
   end
 
   def all
-    videos_list
+    Enumerator.new do |e|
+      videos_list.each do |v|
+        e << v
+      end
+    end.lazy
   end
 
   def videos_list

@@ -5,7 +5,11 @@ class LeaguesResource < Resource
   end
 
   def all
-    leagues_list
+    Enumerator.new do |e|
+      leagues_list.each do |v|
+        e << v
+      end
+    end.lazy
   end
 
   def leagues_list
