@@ -22,3 +22,18 @@ get '/video/:reference' do
   videos = VideosResource.new
   videos.videos_by_reference(params[:reference]).to_json
 end
+
+get '/teams/:slug/:tournament' do
+  content_type :json
+  teams = TeamsResource.new
+  teams.teams_by_slug_and_tournament(params[:slug], params[:tournament]).to_json
+end
+
+if development?
+  RestClient.log =
+  Object.new.tap do |proxy|
+    def proxy.<<(message)
+      p message
+    end
+  end
+end
